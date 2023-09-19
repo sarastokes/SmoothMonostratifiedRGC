@@ -1,0 +1,9 @@
+*.asv
+*.sycntex.gz
+*.DS_Store
+
+
+*.ai
+*.fig
+*.png
+*.pxp
