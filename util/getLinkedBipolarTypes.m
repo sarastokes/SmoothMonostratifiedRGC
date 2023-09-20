@@ -11,7 +11,7 @@ function T = getLinkedBipolarTypes(neuron)
     T.Class(contains(T.Label, "DB5")) = "DB5";
     T.Class(contains(T.Label, "DB6")) = "DB6";
     T.Class(contains(T.Label, "giant", "IgnoreCase", true)) = "Giant";
-    T.Class(contains(T.Label, ["mBC", "midget"])) = "Midget";
+    T.Class(contains(T.Label, ["mBC", "midget"], "IgnoreCase", true)) = "Midget";
 
     T.Class(T.NeuronID == 22524) = "DB5";
 
