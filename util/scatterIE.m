@@ -1,18 +1,19 @@
 function [hR, hA] = scatterIE(neuron, opts)
+% Convenience function for quickly testing out colormap combos on Fig 3
 
     arguments
         neuron
         opts.bins        {mustBeInteger} = 20
         opts.smoothFac   {mustBeInteger} = 1
         opts.mrk         char            = '.w'
-        opts.cmap        double          = bone(256)
+        opts.cmap        double          = []
         opts.markers     logical         = true
         opts.xbound      double          = []
         opts.ybound      double          = []
         opts.dendrite    logical         = false
         opts.square      logical         = false
         opts.cbar        logical         = false
-        opts.clevels     double          = 9
+        opts.clevels     double          = 256
         opts.branch      logical         = false
     end
 
@@ -28,7 +29,7 @@ function [hR, hA] = scatterIE(neuron, opts)
         switch neuron.ID
             case 1321
                 dendriteXYZ(dendriteXYZ(:,1) < 55,:) = [];
-            case 18269 
+            case 18269
                 dendriteXYZ(dendriteXYZ(:,3) < 45, :) = [];
             case 5063
                 dendriteXYZ(dendriteXYZ(:,3) < 55, :) = [];
@@ -40,7 +41,7 @@ function [hR, hA] = scatterIE(neuron, opts)
         numPlots = 2;
         dendriteXYZ = [NaN NaN NaN];
     end
-    
+
     if isempty(opts.xbound)
         [xMin, xMax] = bounds([ribbonXYZ(:,1); amacrineXYZ(:,1); dendriteXYZ(:,1)]);
         opts.xbound = [xMin, xMax];
@@ -63,7 +64,9 @@ function [hR, hA] = scatterIE(neuron, opts)
         end
     end
 
-    figure(); 
+    cmap = opts.cmap;
+
+    figure();
     set(gcf, 'DefaultAxesFontSize', 10);
 
     if numPlots == 3
@@ -76,11 +79,13 @@ function [hR, hA] = scatterIE(neuron, opts)
             [~, h] = golgi(neuron, 'ax', gca, 'Color', 'k');
             set(h, 'FaceAlpha', 1);
         end
-        hideAxes();
-        cmap = slanCM('tempo', opts.clevels);
-        %cmap = flipud(slanCM('bone', opts.clevels));
-        cmap(end-1:end,:) = [];  % Remove darkest value to preserve dendrites
-        colormap(gca, cmap);
+        hideAxes(); drawnow;
+        if isempty(opts.cmap)
+            cmap = slanCM('tempo', opts.clevels);
+            % Remove darkest value to preserve dendrites
+            cmap(end-1:end,:) = [];
+        end
+        colormap(gca, cmap); drawnow;
         if opts.cbar
             cb = colorbar();
             cb.Layout.Tile = 'south';
@@ -92,15 +97,18 @@ function [hR, hA] = scatterIE(neuron, opts)
     title('Bipolar Cell Input');
     hR = scattercloud(ribbonXYZ(:, 1), ribbonXYZ(:,2),...
         opts.bins, opts.smoothFac, opts.mrk, opts.cmap, opts.xbound, opts.ybound);
-    axis tight equal;
+    axis tight equal; drawnow;
     if opts.dendrite
         [~, h] = golgi(neuron, 'ax', gca, 'Color', 'k');
         set(h, 'FaceAlpha', 1);
     end
     hideAxes();
-    cmap = slanCM('dense', opts.clevels);
-    cmap(end-1:end,:) = [];  % Remove darkest value to preserve dendrites
-    colormap(gca, cmap);
+    if isempty(opts.cmap)
+        cmap = slanCM('dense', opts.clevels);
+        % Remove darkest value to preserve dendrites
+        cmap(end-1:end,:) = [];
+    end
+    colormap(gca, cmap); drawnow;
     if opts.cbar
         cb = colorbar();
         cb.Layout.Tile = 'south';
@@ -110,27 +118,27 @@ function [hR, hA] = scatterIE(neuron, opts)
     subplot(1,3,3); hold on;
     hA = scattercloud(amacrineXYZ(:,1), amacrineXYZ(:,2),...
         opts.bins, opts.smoothFac, opts.mrk, opts.cmap, opts.xbound, opts.ybound);
-    axis tight equal;
+    axis tight equal; drawnow;
     if opts.dendrite
         [~, h] = golgi(neuron, 'ax', gca, 'Color', 'k');
         set(h, 'FaceAlpha', 1);
     end
     hideAxes();
-    cmap = slanCM('OrRd', opts.clevels);
-    cmap(end-1:end,:) = [];  % Remove darkest value to preserve dendrites
+    if isempty(opts.cmap)
+        cmap = slanCM('OrRd', opts.clevels);
+        % Remove darkest value to preserve dendrites
+        cmap(end-1:end,:) = [];
+    end
     colormap(gca, cmap);
-    title('Amacrine Cell Input');
+    title('Amacrine Cell Input'); drawnow;
 
-    if opts.cbar
-        cb = colorbar();
-        cb.Layout.Tile = 'south';
-        cb.Label.String = 'Synapse Density';
-    end     
-
+    % Always delete dendrite markers if neuron was plotted. Other by request
+    if opts.dendrite && opts.branch
+        delete(hD(2));
+    end
     if ~opts.markers
         delete(hA(2));
         delete(hR(2));
-        delete(hD(2));
     end
 
     % Match colormaps
@@ -138,6 +146,15 @@ function [hR, hA] = scatterIE(neuron, opts)
     %cMax = max(vertcat(axHandles.CLim), [], "all");
     %set(axHandles, 'CLim', [0 cMax]);
     %fprintf('Colormap max = %.3f\n', cMax);
+
+
+    if opts.cbar
+        for i = 1:numel(axHandles)
+            cb = colorbar(axHandles(i));
+            cb.Layout.Tile = 'south';
+            cb.Label.String = 'Synapse Density';
+        end
+    end
 
     switch neuron.ID
         case 1321
@@ -159,4 +176,4 @@ function [hR, hA] = scatterIE(neuron, opts)
 
 
     figPos(gcf, 1.4, 1);
-    %tightfig(gcf);
+    tightfig(gcf);

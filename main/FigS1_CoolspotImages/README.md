@@ -12,4 +12,4 @@ Contents:
 
 
 The following large files will not be made available on Github but are available on request:
-- `\psd`: folder containing the Photoshop files for coloring in the target neurons
+- `\photoshop`: folder containing the Photoshop files for coloring in the target neurons

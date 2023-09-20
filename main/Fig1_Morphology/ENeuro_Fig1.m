@@ -14,7 +14,7 @@ c1321.render('FaceColor', [0.3 0.3 0.3]);
 c5370.render('FaceColor', [0.6 0.6 0.6], 'FaceAlpha', 0.8, 'ax', gca);
 view(0, 90);
 hideAxes();
-sb = plot3([215 235], [1 1], [0 0], 'k', 'LineWidth', 1.5);
+plot3([215 235], [1 1], [0 0], 'k', 'LineWidth', 1.5);
 tightfig(gcf);
 if savePlots
     print(gcf, fullfile(saveDir, 'Fig1A.png'), '-dpng');
