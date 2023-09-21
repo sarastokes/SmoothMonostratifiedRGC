@@ -1,4 +1,7 @@
 function T = getLinkedBipolarTypes(neuron)
+%
+% Syntax:
+%   T = getLinkedBipolarTypes(neuron)
 
     T = countLinkedNeurons(neuron, "RibbonPost");
     T.Label = repmat("", [height(T), 1]);
@@ -13,8 +16,6 @@ function T = getLinkedBipolarTypes(neuron)
     T.Class(contains(T.Label, "giant", "IgnoreCase", true)) = "Giant";
     T.Class(contains(T.Label, ["mBC", "midget"], "IgnoreCase", true)) = "Midget";
 
-    T.Class(T.NeuronID == 22524) = "DB5";
-
-    T.Class(~ismember(T.Class, ["DB4", "DB5", "Giant", "Midget"])) = "Unclassified";
+    T.Class(~ismember(T.Class, ["DB4", "DB5", "DB6", "Giant", "Midget"])) = "Unclassified";
 
     T = sortrows(T, "Class");
