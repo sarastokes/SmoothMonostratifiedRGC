@@ -6,7 +6,10 @@ function T = getLinkedBipolarTypes(neuron)
     T = countLinkedNeurons(neuron, "RibbonPost");
     T.Label = repmat("", [height(T), 1]);
     for i = 1:height(T)
-        T.Label(i) = unique(neuron.links{neuron.links.NeuronID == T.NeuronID(i), 'NeuronLabel'});
+        iLabel = unique(neuron.links{neuron.links.NeuronID == T.NeuronID(i), "NeuronLabel"});
+        if ~isempty(iLabel)
+            T.Label(i) = iLabel;
+        end
     end
 
     T.Class = repmat("", [height(T), 1]);

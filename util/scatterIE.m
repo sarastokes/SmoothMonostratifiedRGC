@@ -137,8 +137,8 @@ function [hR, hA] = scatterIE(neuron, opts)
         delete(hD(2));
     end
     if ~opts.markers
-        delete(hA(2));
-        delete(hR(2));
+        delete(hA(2)); hA(2) = [];
+        delete(hR(2)); hR(2) = [];
     end
 
     % Match colormaps
