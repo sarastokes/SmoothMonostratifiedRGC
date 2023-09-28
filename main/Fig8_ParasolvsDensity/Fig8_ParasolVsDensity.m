@@ -39,3 +39,17 @@ if savePlots
     exportgraphics(gca, fullfile(saveDir, 'Fig10_S1.png'), "Resolution", 600);
 end
 
+%% Colorbar
+% Copy into Illustrator to alter the text etc. Both horizontal and vertical
+% to see which fits the layout better
+figure();
+tiledlayout(1,1);
+hideAxes();
+
+cb1 = colorbar('Location', 'eastoutside');
+cb1.Label.String = 'Normalized Synapse/Dendrite Density';
+
+cb2 = colorbar('Location', 'southoutside');
+cb1.Label.String = 'Normalized Synapse/Dendrite Density';
+
+colormap(lighten(slanCM('thermal-2'), 0.1));

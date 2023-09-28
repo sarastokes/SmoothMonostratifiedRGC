@@ -57,6 +57,11 @@ set(findall(p, 'Type', 'patch'), 'LineWidth', 1.5);
 colormap([db4Color; db5Color; giantColor]);
 
 
+%% Extended Data Table 5-1
+perSmoothSynapses = splitapply(@sum, T1321.Count, G);
+perSmoothNeurons = splitapply(@numel, T1321.Count, G);
+
+
 %% Figure 5B
 [G, groupNames] = findgroups([T18269.Class; T5370.Class; T5063.Class]);
 counts = splitapply(@sum, [T18269.Count; T5370.Count; T5063.Count], G);
@@ -89,7 +94,7 @@ colormap([db4Color; db5Color; midgetColor; giantColor; db6Color]);
 
 % Copied both figures to Illustrator for style updates and sizing
 
-%% Explore:
+%% Extended Data Tables 5-2 to 5-4:
 perParasolSynapses = zeros(3, numel(groupNames));
 perParasolNeurons = zeros(3, numel(groupNames));
 

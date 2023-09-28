@@ -1,37 +1,3 @@
-%% 20230912
-
-c18269 = Neuron(18269, 'i');
-c5063 = Neuron(5063, 'i');
-c21392 = Neuron(21392, 'i');
-c5370 = Neuron(5370, 'i');
-c18269 = Neuron(18269, 'i');
-c5035 = Neuron(5035, 'i');
-
-%% Smooth RGC
-c1321 = Neuron(1321, 'i', true);
-% I split c1321 at the axon in Viking for this analysis and then merged the
-% axon back once I was done.
-x = sbfsem.analysis.DendriticFieldHull(c1321, [], false);
-% Use area of a circle formula to get equivalent diameter
-dfDiameter = 2*sqrt(x.data.hullArea / pi);
-fprintf('Dendritic field diameter was %.3f\n', dfDiameter);
-% Area = 2.059e4, Diameter = 161.913
-% 57.315 +- 2.433 (n=5)
-
-%% Parasol RGC
-dfDiameters = zeros(1, 5);
-x = sbfsem.analysis.DendriticFieldHull(c18269, [], false);
-dfDiameter(1) = 2*sqrt(x.data.hullArea / pi);
-x = sbfsem.analysis.DendriticFieldHull(c5063, [], false);
-dfDiameter(2) = 2*sqrt(x.data.hullArea / pi);
-x = sbfsem.analysis.DendriticFieldHull(c21392, [], false);
-dfDiameter(3) = 2*sqrt(x.data.hullArea / pi);
-x = sbfsem.analysis.DendriticFieldHull(c5370, [], false);
-dfDiameter(4) = 2*sqrt(x.data.hullArea / pi);
-x = sbfsem.analysis.DendriticFieldHull(c5035, [], false);
-dfDiameter(5) = 2*sqrt(x.data.hullArea / pi);
-printStat(dfDiameter, "UseSD", true);
-
 
 %% Nearest neighbor analysis
 annotations = c1321.getCellNodes();

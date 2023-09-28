@@ -65,10 +65,12 @@ cmap = lighten(slanCM('thermal-2'), 0.1);
 figure();
 subplot(1,3,1); hold on;
 title('DB5 Bipolar Cell');
-h4 = scattercloud(db5XYZ(:,1), db5XYZ(:,2),...
+h5 = scattercloud(db5XYZ(:,1), db5XYZ(:,2),...
     numBins, 1, '.w', slanCM('plasma'), xBound, yBound);
 [~, h0] = golgi(c1321, 'ax', gca, 'Color', 'k');
 set(h0, 'FaceAlpha', 1);
+delete(h5(2));
+plot3(ax, [215 235], [1 1], [0 0], 'k', 'LineWidth', 1);
 hideAxes();
 colormap(cmap);
 
@@ -76,8 +78,10 @@ subplot(1,3,2); hold on;
 title('DB4 Bipolar Cell');
 h4 = scattercloud(db4XYZ(:,1), db4XYZ(:,2),...
     numBins, 1, '.w', slanCM('plasma'), xBound, yBound);
+delete(h4(2));
 [~, h0] = golgi(c1321, 'ax', gca, 'Color', 'k');
 set(h0, 'FaceAlpha', 1);
+plot3(ax, [215 235], [1 1], [0 0], 'k', 'LineWidth', 1);
 hideAxes();
 colormap(cmap);
 
@@ -85,8 +89,10 @@ subplot(1,3,3); hold on;
 title('Giant Bipolar Cell');
 hG = scattercloud(giantXYZ(:,1), giantXYZ(:,2),...
     numBins, 1, '.w', slanCM('plasma'), xBound, yBound);
+delete(hG(2));
 [~, h0] = golgi(c1321, 'ax', gca, 'Color', 'k');
 set(h0, 'FaceAlpha', 1);
+plot3(ax, [215 235], [1 1], [0 0], 'k', 'LineWidth', 1);
 hideAxes();
 colormap(cmap);
 
@@ -100,6 +106,7 @@ fprintf('Colormap max = %.3f\n', cMax);
 bcTypes = ["DB5", "DB4", "Giant"];
 for i = 1:numel(axHandles)
     title(axHandles(i), "");
+    plot3(axHandles(i), [215 235], [1 1], [0 0], 'k', 'LineWidth', 1);
     exportgraphics(axHandles(i), ...
         fullfile(saveDir, sprintf('Fig6B_%s.png', bcTypes(i))),...
         "Resolution", 600);

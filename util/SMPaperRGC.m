@@ -80,10 +80,7 @@ classdef SMPaperRGC < handle
     end
 
     methods (Static)
-        function clipBipolar(ID, handle)
-            if nargin < 3
-                handle = gca;
-            end
+        function cutoff = clipBipolar(ID, handle)
 
             if istext(ID)
                 ID = convertStringsToChars(ID);
@@ -91,6 +88,7 @@ classdef SMPaperRGC < handle
             end
 
             if ismember(ID, [19513, 22927, 21374, 22499, 23855, 26914, 27142, 27316, 28304, 28313, 30624, 43194, 51071, 51073, 51791])
+                cutoff = [];
                 return
             end
 
@@ -218,6 +216,10 @@ classdef SMPaperRGC < handle
                 otherwise
                     warning('No cutoff specified for c%u!', ID);
                     return
+            end
+            if nargin < 2
+                cutoff = [];
+                return
             end
             if flatFlag
                 flattenRender(findobj(handle, 'Tag', ['c', num2str(ID)]), 'i');

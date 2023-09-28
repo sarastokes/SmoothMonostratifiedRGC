@@ -1,4 +1,4 @@
-%% Figure 9
+%% Figure 10C-D
 % - Last updated figure: 19Sep2023
 % --
 
@@ -57,10 +57,12 @@ acDist18269 = fastEuclid2d(...
 %% Create the figure
 % Add the neurons
 ax = golgi(c1321, 'Color', mainColor);
-golgi(c18269, 'Color', parasolColor(1,:), 'ax', ax);
+golgi(c18269, 'Color', parasolColor(2,:), 'ax', ax);
 clipMesh(findByTag(ax, 'c18269'), 20);
-golgi(c5063, 'Color', parasolColor(2,:), 'ax', ax);
+golgi(c5063, 'Color', parasolColor(1,:), 'ax', ax);
 clipMesh(findByTag(ax, 'c5063'), 45);
+golgi(c5035, 'Color', parasolColor(1,:), 'ax', ax);
+clipMesh(findByTag(ax, 'c5035'), 22);
 set(findall(gcf, 'type', 'patch'), 'FaceAlpha', 1);
 sb = plot3([180 200], [60 60], [0 0], 'k', 'LineWidth', 1.5);
 xlim([96 201.5]); ylim([60 140]);
@@ -72,10 +74,14 @@ h2 = scatter3(ribbon1321(tf5063, 1), ribbon1321(tf5063, 2),...
 h1 = scatter3(ribbon1321(tf18269, 1), ribbon1321(tf18269, 2),...
     repmat(ax.ZLim(2), [nnz(tf18269), 1]),...
     35, bcDist18269, 'filled', 'MarkerEdgeColor', 'k');
+h3 = scatter3(ribbon1321(tf5035, 1), ribbon1321(tf5035, 2),...
+    repmat(ax.ZLim(2), [nnz(tf5035), 1]),...
+    35, bcDist5035, 'filled', 'MarkerEdgeColor', 'k');
 % Set the color mapping
 colormap(cmap);
 b = colorbar('Location', 'southoutside');
 b.Label.String = "Distance from Parasol Dendritic Field Center (microns)";
+fprintf('Max distance: %.2f\n', max([bcDist5035; bcDist5063; bcDist18269]));
 set(ax, 'CLim', [0 35]);
 
 
