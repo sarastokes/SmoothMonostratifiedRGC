@@ -76,7 +76,7 @@ end
 axHandles = findall(gcf, 'Type', 'axes');
 for i = 1:numel(axHandles)
     title(axHandles(i), "");
-    plot3(axHandles(i), [139 149], [59 59], [50 50], 'w', 'LineWidth', 1);
+    plot3(axHandles(i), [67 77], [147 147], [50 50], 'w', 'LineWidth', 1);
     exportgraphics(axHandles(i),...
         fullfile(saveDir, sprintf('c5370_AltPlot%u.png', i)),...
         'Resolution', 600);

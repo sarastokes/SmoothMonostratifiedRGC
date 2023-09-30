@@ -13,7 +13,7 @@ midgetColor = hex2rgb('7bbe88');
 cmap = linspecer(11, 'sequential'); cmap(5,:) = [];
 
 savePlots = true;
-saveDir = 'C:\Users\spatterson\Dropbox\Sara and Jay Shared\smooth monostratified ganglion cells';
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig10_ParasolDfAlign");
 
 % Determine which bipolar synapses overlap with the parasol dendritic fields
 ribbon1321 = c1321.getSynapseXYZ('RibbonPost');
@@ -76,6 +76,23 @@ h1 = scatter3(ribbon1321(tf18269, 1), ribbon1321(tf18269, 2),...
 h3 = scatter3(ribbon1321(tf5035, 1), ribbon1321(tf5035, 2),...
     repmat(ax.ZLim(2), [nnz(tf5035), 1]),...
     35, bcDist5035, 'filled', 'MarkerEdgeColor', 'k');
+% Set the color mapping
+colormap(cmap);
+b = colorbar('Location', 'southoutside');
+b.Label.String = "Distance from Parasol Dendritic Field Center (microns)";
+fprintf('Max distance: %.2f\n', max([bcDist5035; bcDist5063; bcDist18269]));
+set(ax, 'CLim', [0 35]);
+
+%% Individual figures
+ax = golgi(c1321, 'Color', mainColor);
+[~, h5035] = golgi(c5035, 'Color', parasolColor(1,:), 'ax', ax);
+clipMesh(h5035, 22);
+set(findall(gcf, 'Type', 'patch'), 'FaceAlpha', 1);
+h3 = scatter3(ribbon1321(tf5035, 1), ribbon1321(tf5035, 2),...
+    repmat(ax.ZLim(2), [nnz(tf5035), 1]),...
+    35, bcDist5035, 'filled', 'MarkerEdgeColor', 'k');
+h3.SizeData = 50;
+xlim([160 235]);ylim([42, 105]);
 % Set the color mapping
 colormap(cmap);
 b = colorbar('Location', 'southoutside');
