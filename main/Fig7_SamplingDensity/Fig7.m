@@ -2,13 +2,7 @@
 % - Last updated: 20Sep2023 SSP
 % --
 
-% Smooth RGCs
-c1321 = Neuron(1321, 'i', true); c1321.getLinks();
-
-% Parasol RGCs
-c18269 = Neuron(18269, 'i', true); c18269.getLinks();
-c5370 = Neuron(5370, 'i', true); c5370.getLinks();
-c5063 = Neuron(5063, 'i', true); c5063.getLinks();
+run('loadKeyRGCs.m');
 
 %% Get the counts for each type of bipolar cell
 T1321 = getLinkedBipolarTypes(c1321);
