@@ -87,7 +87,7 @@ classdef SMPaperRGC < handle
                 ID = str2double(ID(2:end));
             end
 
-            if ismember(ID, [19513, 22927, 21374, 22499, 23855, 26914, 27142, 27316, 28304, 28313, 30624, 43194, 51071, 51073, 51791])
+            if ismember(ID, [7122, 9725, 9734, 19513, 22260, 22927, 21374, 22499, 23855, 26914, 27142, 27316, 28304, 28313, 30624, 43194, 51071, 51073, 51791, 53255, 53261])
                 cutoff = [];
                 return
             end
@@ -95,6 +95,18 @@ classdef SMPaperRGC < handle
             flatFlag = false;
 
             switch ID
+                case 9084
+                    cutoff = 82;
+                case 9336
+                    cutoff = 73;
+                case 11043
+                    cutoff = 55;
+                case 11045
+                    cutoff = 57;
+                case 12685
+                    cutoff = 80;
+                case 12747
+                    cutoff = 73.2;
                 case 19235
                     cutoff = 59;
                 case 19284
@@ -122,12 +134,18 @@ classdef SMPaperRGC < handle
                     cutoff = 51;
                 case 22114
                     cutoff = 74;
+                case 22118
+                    cutoff = 65;
                 case 22149
                     cutoff = 82;
                 case 22138
                     cutoff = 68;
+                case 22162
+                    cutoff = 55;
                 case 22168
                     cutoff = 62;
+                case 22219
+                    cutoff = 54;
                 case 22227
                     cutoff = 55;
                 case 22260
@@ -140,16 +158,28 @@ classdef SMPaperRGC < handle
                     cutoff = 67;
                 case 22327
                     cutoff = 80; % double
+                case 22374
+                    cutoff = 58.5;
                 case 22376
                     cutoff = 64;
+                case 22394
+                    cutoff = 62;
+                case 22420
+                    cutoff = 54;
+                case 22424
+                    cutoff = 55;
                 case 22490
                     cutoff = 69;
                 case 22491
                     cutoff = 60;
+                case 22494
+                    cutoff = 58;
                 case 22509
                     cutoff = 63.5;
                 case 22524
                     cutoff = 64;
+                case 22537
+                    cutoff = 61;
                 case 22555
                     cutoff = 70;
                 case 22563
@@ -163,7 +193,7 @@ classdef SMPaperRGC < handle
                 case 22656
                     cutoff = 74;
                 case 22663
-                    cutoff = 68;
+                    cutoff = 67;
                 case 22679
                     cutoff = 67;
                 case 22828
@@ -193,10 +223,16 @@ classdef SMPaperRGC < handle
                     flatFlag = true;
                 case 28495
                     cutoff = 45;
+                case 28680
+                    cutoff = 62;
                 case 29129
                     cutoff = 50;
                 case 29644
                     cutoff = 63;
+                case 30173
+                    cutoff = 81;
+                case 41638
+                    cutoff = 55;
                 case 44964
                     cutoff = 45;
                 case 45144
@@ -211,6 +247,10 @@ classdef SMPaperRGC < handle
                     cutoff = 74;
                 case 51772
                     cutoff = 70;
+                case 53247
+                    cutoff = 60;
+                case 53249
+                    cutoff = 56;
                 case {1321, 18269, 5063, 5370}
                     return
                 otherwise
