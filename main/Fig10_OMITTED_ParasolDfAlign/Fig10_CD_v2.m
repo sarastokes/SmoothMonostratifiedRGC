@@ -37,6 +37,14 @@ bcDist18269 = fastEuclid2d(...
 bcDist5035 = fastEuclid2d(...
     ribbon1321(tf5035, 1:2), df5035.data.centroid(1:2));
 
+fprintf('c18269\t-\t'); printStat(bcDist18269, true);
+fprintf('\t\tMinimum distance: %.2f\n', min(bcDist18269))
+fprintf('c5035\t-\t'); printStat(bcDist5035, true);
+fprintf('\t\tMinimum distance: %.2f\n', min(bcDist5035))
+fprintf('c5063\t-\t'); printStat(bcDist5063, true);
+fprintf('\t\tMinimum distance: %.2f\n', min(bcDist5063))
+
+
 
 % Repeat but for amacrine cells
 amacrine1321 = c1321.getSynapseXYZ('ConvPost');

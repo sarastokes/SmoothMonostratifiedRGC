@@ -13,19 +13,16 @@ run('loadKeyRGCs.m');
 T1321 = getLinkedBipolarTypes(c1321);
 idkIDs = T1321.NeuronID(T1321.Class == "Unclassified");
 idx = c1321.links.SynapseType=="RibbonPost" & ...
-~ismember(c1321.links.NeuronID, idkIDs);
+    ~ismember(c1321.links.NeuronID, idkIDs);
 % The XYZ coordinates of the classified ribbon synapses
 xyData = c1321.links.SynapseXYZ(idx, 1:2);
 % The associated neuron IDs for determining BC type
 neuronIDs = c1321.links.NeuronID(idx);
-% The outliers that skew the fit but can't possibly be part of a hotspot
-% outliers = [56, 84, 85, 115];
-% xyData(outliers,:) = [];
-% neuronIDs(outliers) = [];
 
 %% Create the Gaussian Mixture Model
 GMM = GaussianMixModel(xyData, 4);
-% Check other numbers of components to confirm that four was right
+
+%% Check other numbers of components to confirm that 4 was right
 GMM.checkComponents();
 
 % Save the model

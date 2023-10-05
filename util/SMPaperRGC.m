@@ -29,7 +29,7 @@ classdef SMPaperRGC < handle
                 case 'midget'
                     xyz = bcLinks{ismember(bcLinks, ["mBC", "midget"]), 'SynapseXYZ'};
                 case 'db6'
-                    xyz = bcLinks{ismember(bcLinks, ["DB6"]), 'SynapseXYZ'};
+                    xyz = bcLinks{ismember(bcLinks, "DB6"), 'SynapseXYZ'};
                 case 'unknown'
                     error('Not yet implemented!');
             end
