@@ -179,7 +179,7 @@ db5s = unique(c18269.links{...
 for i = 1:numel(db5s)
     golgi(Neuron(db5s(i), 'i'), 'Color', lighten(db5Color, 0.5), 'ax', ax);
     drawnow;
-    SMPaperRGC.clipBipolar(db5s(i), ax);
+    clipBipolar(db5s(i), ax);
 end
 xlim([110 225]); ylim([54 130]);
 

@@ -8,3 +8,7 @@
 *.png
 *.psd
 *.pxp
+*.svg
+
+/NotesForCoauthors.md
+/drafts

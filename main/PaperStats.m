@@ -104,4 +104,8 @@ fprintf('%u of %u giant bipolar cells\n',...
 
 % How many synapses did c18269 receive from DB4 bipolar 19331?
 fprintf('%u synapses from c19331\n', T18269.Count(T18269.NeuronID == 19331));
-% 30
+% 33
+
+%% Discussion
+% Were DB5 BCs the dominant driver of the BC clusters?
+disp([10/21 23/30 8/14 15/18]*100)  % ranging from 48-83%
