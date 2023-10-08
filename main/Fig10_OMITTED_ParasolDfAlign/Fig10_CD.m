@@ -2,12 +2,7 @@
 % - Last updated figure: 19Sep2023
 % --
 
-c1321 = Neuron(1321, 'i', true);
-c1321.getLinks();
-c18269 = Neuron(18269, 'i', true);
-c18269.getLinks();
-c5063 = Neuron(5063, 'i', true);
-c5063.getLinks();
+run('loadKeyRGCs.m');
 
 mainColor = [0.15 0.15 0.15];
 parasolColor = [0.6 0.6 0.6; 0.8 0.8 0.8];
@@ -146,7 +141,6 @@ end
 clipMesh(findByTag(ax, 'c19284'), 72, false);
 clipMesh(findByTag(ax, 'c22298'), 74, false);
 clipMesh(findByTag(ax, 'c26772'), 73, false);
-
 
 smoothDB4_c5063 = db4_c5063(ismember(db4_c5063, c1321.links{...
     c1321.links.SynapseType == "RibbonPost", "NeuronID"}));

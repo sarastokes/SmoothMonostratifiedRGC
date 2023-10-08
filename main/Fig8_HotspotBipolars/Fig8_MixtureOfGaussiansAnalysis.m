@@ -3,13 +3,14 @@
 saveDir = fullfile(getSmoothMonoRepoDir(), "main", "MixOfGaussianModel");
 savePlots = true;
 
+run('loadKeyRGCs.m');
+
 db4Color = hex2rgb('be273e');
 db5Color = hex2rgb('458ac2');
 giantColor = hex2rgb('f3b026');
 smoothColor = [0.15 0.15 0.15];
 
 %% Data import
-run('loadKeyRGCs.m');
 T1321 = getLinkedBipolarTypes(c1321);
 idkIDs = T1321.NeuronID(T1321.Class == "Unclassified");
 idx = c1321.links.SynapseType=="RibbonPost" & ...
@@ -25,7 +26,7 @@ GMM = GaussianMixModel(xyData, 4);
 %% Check other numbers of components to confirm that 4 was right
 GMM.checkComponents();
 
-% Save the model
+%% Save the mode
 save(fullfile(saveDir, 'GMM.mat'), 'GMM');
 
 %% Make the table for extended data
@@ -141,6 +142,7 @@ for i = 1:GMM.numComponents
         classMatrix(i,j) = nnz(bcClasses{i} == bipolarTypes(j));
     end
 end
+clear i j iClass
 
 % Sanity check bc that was messy
 assert(isequal(clusterTable.Count(1:GMM.numComponents),...
@@ -150,9 +152,7 @@ assert(isequal(clusterTable.Count(1:GMM.numComponents),...
 classTable = array2table(classMatrix, "VariableNames", bipolarTypes);
 pctTable = classTable ./ sum(classTable, 1) .* 100;
 
-clear i j iClass classMatrix
-
-% Make some pie charts bc Jay says they have no place in vision science
+% Make some pie charts (decided to do stacked bar chart in Igor)
 for i = 1:GMM.numComponents
     figure();
     labels = arrayfun(@(a,b) sprintf("%u (%.1f%%)", a, b),...
@@ -162,3 +162,4 @@ for i = 1:GMM.numComponents
     title(sprintf("Component %u (N = %u)", i, sum(classTable{i,:})));
     savefig(gcf, fullfile(saveDir, sprintf("GMM_Comp%u.fig",i)));
 end
+clear labels p i

@@ -2,12 +2,9 @@
 % - Figures last updated: 20230912 (SSP)
 % --
 
-savePlots = true;
-saveDir = 'C:\Users\spatterson\Dropbox\Sara and Jay Shared\smooth monostratified ganglion cells';
-
-%% Import
-c1321 = Neuron(1321, 'i');
-c5370 = Neuron(5370, 'i');
+savePlots = false;
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig1_Morphology", "subplots");
+run('loadKeyRGCs.m');
 
 %% Fig1A ------------------------------------------------------------------
 c1321.render('FaceColor', [0.3 0.3 0.3]);
@@ -17,7 +14,7 @@ hideAxes();
 plot3([215 235], [1 1], [0 0], 'k', 'LineWidth', 1.5);
 tightfig(gcf);
 if savePlots
-    print(gcf, fullfile(saveDir, 'Fig1A.png'), '-dpng');
+    exportgraphics(gca, fullfile(saveDir, 'Fig1A.png'), 'Resolution', 600);
 end
 
 %% Fig 1B -----------------------------------------------------------------
@@ -32,7 +29,7 @@ sb = plot3([210 210], [200 200], [40 60], 'k', 'LineWidth', 1.5);
 hideAxes();
 tightfig(gcf);
 if savePlots
-    print(gcf, fullfile(saveDir, 'Fig1B.png'), '-dpng', '-r600');
+    exportgraphics(gca, fullfile(saveDir, 'Fig1B.png'), 'Resolution', 600);
 end
 % Once I get in illustrator I make a line that matches the vertical
 % scale bar, rotate it (or copy the image and crop it to just include

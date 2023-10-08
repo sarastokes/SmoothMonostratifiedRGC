@@ -64,21 +64,21 @@ plot3([215 225]-5, [55 55], [50 50], 'k', 'LineWidth', 1.5);
 db4IDs = T18269.NeuronID(T18269.Class == "DB4");
 for i = 1:numel(db4IDs)
     golgi(Neuron(db4IDs(i), 'i'), 'ax', ax, 'FaceColor', db4Color);
-    SMPaperRGC.clipBipolar(db4IDs(i), ax);
+    clipBipolar(db4IDs(i), ax);
     drawnow;
 end
 
 db5IDs = T18269.NeuronID(T18269.Class == "DB5");
 for i = 1:numel(db5IDs)
     golgi(Neuron(db5IDs(i), 'i'), 'ax', ax, 'FaceColor', db5Color);
-    SMPaperRGC.clipBipolar(db5IDs(i), ax);
+    clipBipolar(db5IDs(i), ax);
     drawnow;
 end
 
 db6IDs = T18269.NeuronID(T18269.Class == "DB6");
 for i = 1:numel(db6IDs)
     golgi(Neuron(db6IDs(i), 'i'), 'ax', ax, 'FaceColor', db6Color);
-    SMPaperRGC.clipBipolar(db6IDs(i), ax);
+    clipBipolar(db6IDs(i), ax);
     drawnow;
 end
 
@@ -86,7 +86,7 @@ midgetIDs = T18269.NeuronID(T18269.Class == "Midget");
 for i = 1:numel(midgetIDs)
     [~, h] = golgi(Neuron(midgetIDs(i), 'i'), 'ax', ax,...
         'FaceColor', midgetColor);
-    SMPaperRGC.clipBipolar(midgetIDs(i), ax);
+    clipBipolar(midgetIDs(i), ax);
     drawnow;
 end
 
@@ -94,7 +94,7 @@ giantIDs = T18269.NeuronID(T18269.Class == "Giant");
 for i = 1:numel(giantIDs)
     [~, h] = golgi(Neuron(giantIDs(i), 'i'), 'ax', ax,...
         'FaceColor', giantColor);
-    SMPaperRGC.clipBipolar(giantIDs(i), ax);
+    clipBipolar(giantIDs(i), ax);
     drawnow;
 end
 

@@ -1,8 +1,8 @@
 # SmoothMonostratifiedRGC
+
 Code for replicating the figures in Patterson, Girresch et al (2023)
 
-
-This repository relies on [SBFSEM-tools](https://github.com/sarastokes/sbfsem-tools).
+This repository relies on [SBFSEM-tools](https://github.com/sarastokes/sbfsem-tools) and requires MATLAB (developed in 2023a but likely compatible with earlier versions).
 
 Morphology:
 - `Fig1.m`: representative reconstructions of a smooth monostratified and parasol RGC
@@ -13,7 +13,7 @@ Synaptic input:
 - `Fig3.m`: density maps of the synaptic input above
 
 Presynaptic bipolar cells:
-- `Fig5.m`: Pie charts of bipolar input to 1 smooth monostratified and 3 parasol RGCs (also Extended Figures 5-1 to 5-4)
+- `Fig5.m`: Pie charts of bipolar input to 1 smooth monostratified and 3 parasol RGCs (also Extended Figures 5-1 and 5-2)
 - `Fig6.m`: bipolar cell input to a smooth monostratified RGC colored by presynaptic bipolar cell type
 - `Fig7.m`: synapses per presynaptic bipolar cell (Fig. 7 and Extended Figures 8-1 to 8-4)
 

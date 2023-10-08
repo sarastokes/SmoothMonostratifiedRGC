@@ -2,7 +2,7 @@
 % - Last updated figure: 19Sep2023
 % --
 
-loadKeyRGCs();
+run('loadKeyRGCs.m');
 
 mainColor = [0.15 0.15 0.15];
 parasolColor = [0.6 0.6 0.6; 0.8 0.8 0.8];

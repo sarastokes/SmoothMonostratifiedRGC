@@ -1,10 +1,8 @@
 %% Figure 9
 % - Last updated: 17Sep2023 SSP
 % --
-c1321 = Neuron(1321, 'i', true);
-c18269 = Neuron(18269, 'i', true);
-c5063 = Neuron(5063, 'i', true);
-c19331 = Neuron(19331, 'i');
+
+run('loadKeyRGCs.m');
 
 mainColor = [0.15 0.15 0.15];
 parasolColor = [0.6 0.6 0.6; 0.8 0.8 0.8];

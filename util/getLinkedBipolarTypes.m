@@ -2,6 +2,7 @@ function T = getLinkedBipolarTypes(neuron)
 %
 % Syntax:
 %   T = getLinkedBipolarTypes(neuron)
+% -------------------------------------------------------------------------
 
     T = countLinkedNeurons(neuron, "RibbonPost");
     T.Label = repmat("", [height(T), 1]);

@@ -5,6 +5,8 @@
 saveDir = fullfile(getSmoothMonoRepoDir(), 'main', 'Fig4_SmoothBCs');
 savePlots = true;
 
+run('loadKeyRGCs.m');
+
 mainColor = [0.15, 0.15, 0.15];
 giantColor = hex2rgb('f3c14a');
 db4Color = hex2rgb('dc2a33');
@@ -12,13 +14,13 @@ db5Color = hex2rgb('5c99cc');
 midgetColor = hex2rgb('7bbe88');
 idkColor = [0.6 0.6 0.6];
 
-T1321 = getLinkedBipolarTypes(c1321);
 
+%% Classify the presynaptic bipolar cells
+T1321 = getLinkedBipolarTypes(c1321);
 db4IDs = T1321{T1321.Class == "DB4", "NeuronID"};
 db5IDs = T1321{T1321.Class == "DB5", "NeuronID"};
 giantIDs = T1321{T1321.Class == "Giant", "NeuronID"};
 
-%% Classify the presynaptic bipolar cells
 db5XYZ = c1321.links{ismember(c1321.links.NeuronID, T1321.NeuronID(T1321.Class == "DB5")), 'SynapseXYZ'};
 db4XYZ = c1321.links{ismember(c1321.links.NeuronID, T1321.NeuronID(T1321.Class == "DB4")), 'SynapseXYZ'};
 giantXYZ = c1321.links{ismember(c1321.links.NeuronID, T1321.NeuronID(T1321.Class == "Giant")), 'SynapseXYZ'};
@@ -48,7 +50,7 @@ plot3(ax, [215 235], [1 1], [0 0], 'k', 'LineWidth', 1);
 
 for i = 1:numel(db4IDs)
     golgi(Neuron(db4IDs(i), 'i'), 'ax', ax, 'Color', db4Color);
-    SMPaperRGC.clipBipolar(db4IDs(i), ax);
+    clipBipolar(db4IDs(i), ax);
     drawnow;
 end
 tightfig(gcf);
@@ -73,7 +75,7 @@ plot3(ax, [215 235], [1 1], [0 0], 'k', 'LineWidth', 1);
 
 for i = 1:numel(giantIDs)
     golgi(Neuron(giantIDs(i), 'i'), 'ax', ax, 'Color', giantColor);
-    SMPaperRGC.clipBipolar(giantIDs(i), ax);
+    clipBipolar(giantIDs(i), ax);
     drawnow;
 end
 tightfig(gcf);

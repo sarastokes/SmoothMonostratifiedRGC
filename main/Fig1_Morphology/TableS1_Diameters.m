@@ -1,11 +1,11 @@
 %% Extended data table 1-1
 % - Last updated: 12Sep2023
 
-%% Smooth RGC
+run('loadKeyRGCs.m');
 smoothIDs = [1321, 7889];
-c7889 = Neuron(7889, 'i');
-c1321 = Neuron(1321, 'i');
+parasolIDs = [5053, 5063, 5370, 18269, 21392];
 
+%% Smooth RGC
 smoothDiameters = zeros(1, 2);
 x = sbfsem.analysis.DendriticFieldHull(c7889, [], false);
 smoothDiameters(1) = 2*sqrt(x.data.hullArea / pi);
@@ -25,14 +25,6 @@ end
 % 153.006 +- 12.597 (n=2)
 
 %% Parasol RGC
-
-parasolIDs = [5053, 5063, 5370, 18269, 21392];
-c5063 = Neuron(5063, 'i');
-c21392 = Neuron(21392, 'i');
-c5370 = Neuron(5370, 'i');
-c18269 = Neuron(18269, 'i');
-c5035 = Neuron(5035, 'i');
-
 parasolDiameters = zeros(1, numel(parasolIDs));
 x = sbfsem.analysis.DendriticFieldHull(c18269, [], false);
 parasolDiameters(1) = 2*sqrt(x.data.hullArea / pi);

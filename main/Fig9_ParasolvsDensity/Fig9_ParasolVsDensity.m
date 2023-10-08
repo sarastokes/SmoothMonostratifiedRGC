@@ -1,9 +1,6 @@
 
 
-c1321 = Neuron(1321, 'i', true);
-c5035 = Neuron(5035, 'i');
-c18269 = Neuron(18269, 'i');
-c5063 = Neuron(5063, 'i');
+run('loadKeyRGCs.m');
 
 %% Testing fig 10
 [hR, hA] = scatterIE(c1321, bins=23, smoothFac=1,...
@@ -31,8 +28,6 @@ clipMesh(h5063, 40, true);
 [~, h5035] = golgi(c5035, 'ax', gca, 'FaceColor', 'k');
 h5035.FaceAlpha = 1;
 clipMesh(h5035, 26, true);
-%clipMesh2(gco, 'X', @(x) x < 195, 'Z', @(x) x< 42);
-
 set(findall(gcf, 'Type', 'patch'), 'FaceAlpha', 1);
 
 if savePlots
@@ -40,8 +35,8 @@ if savePlots
 end
 
 %% Colorbar
-% Copy into Illustrator to alter the text etc. Both horizontal and vertical
-% to see which fits the layout better
+% Copy from figure into Illustrator to alter the text etc.
+% Both horizontal and vertical to see which fits the layout better
 figure();
 tiledlayout(1,1);
 hideAxes();

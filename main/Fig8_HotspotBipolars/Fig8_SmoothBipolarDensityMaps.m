@@ -3,14 +3,9 @@
 % --
 
 savePlots = true;
-saveDir = 'C:\Users\spatterson\Dropbox\Sara and Jay Shared\smooth monostratified ganglion cells';
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "SmoothBipolarDensityMaps");
+run('loadKeyRGCs.m');
 
-c1321 = Neuron(1321, 'i', true);
-c1321.getLinks();
-
-
-
-%% Figure 6B
 % Use annotations to determine x and y extent
 annotations = c1321.getCellXYZ();
 [xMin, xMax] = bounds(annotations(:,1));

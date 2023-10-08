@@ -5,10 +5,7 @@
 savePlots = true;
 saveDir = 'C:\Users\spatterson\Dropbox\Sara and Jay Shared\smooth monostratified ganglion cells';
 
-c1321 = Neuron(1321, 'i', true);
-c5370 = Neuron(5370, 'i', true);
-c18269 = Neuron(18269, 'i', true);
-c5063 = Neuron(5063, 'i', true);
+run('loadKeyRGCs.m');
 
 smoothColor = [0.4 0.4 0.4];
 parasolColor = [0.6 0.6 0.6];
