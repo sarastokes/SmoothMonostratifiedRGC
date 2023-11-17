@@ -9,13 +9,16 @@
 *.psd
 *.pxp
 *.svg
+*.tif
 
 
 /NotesForCoauthors.md
 /main/Fig3_DensityMaps/drafts/
 /main/Fig4_SmoothBCs/drafts/
 /main/Fig5_BipolarQuant/drafts/
+/main/Fig7_SamplingDensity/drafts/
 /main/Fig8_HotspotBipolars/drafts/
 /main/Fig10_CoolspotSynapses/drafts/
-/main/Fig10_OMITTED_ParasolDfAlign/drafts/
+/main/Fig10_OMITTED_ParasolDfAlign/drafts
 /main/FigS2_SynapseBranch/drafts/
+/main/Figs TIFF RGB

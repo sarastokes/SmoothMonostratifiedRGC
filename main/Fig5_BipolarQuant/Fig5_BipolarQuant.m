@@ -2,7 +2,6 @@
 % - Last updated: 21Sep2023 SSP
 % --
 
-
 db4Color = hex2rgb('be273e');
 db5Color = hex2rgb('458ac2');
 midgetColor = hex2rgb('5eb672');
@@ -50,6 +49,16 @@ colormap([db4Color; db5Color; giantColor]);
 %% Extended Data Table 5-1
 perSmoothSynapses = splitapply(@sum, T1321.Count, G);
 perSmoothNeurons = splitapply(@numel, T1321.Count, G);
+totalSmooth = table([perSmoothNeurons; sum(perSmoothNeurons)],....
+    [perSmoothSynapses; sum(perSmoothSynapses)],...
+    'VariableNames', {'Neurons', 'Synapses'},...
+    'RowNames', [groupNames; 'Total']);
+pctSmooth = table(...
+    round(100*perSmoothNeurons ./ sum(perSmoothNeurons),2),....
+    round(100*perSmoothSynapses ./ sum(perSmoothSynapses),2),...
+    'VariableNames', {'Neurons', 'Synapses'},...
+    'RowNames', groupNames);
+disp(pctSmooth); disp(totalSmooth);
 
 
 %% Figure 5B
@@ -93,11 +102,13 @@ perParasolNeurons(1,:) = splitapply(@numel, T18269.Count, G);
 % The rest don't have a group for DB6 so allocate accordingly
 idx = find(allNames ~= "DB6");
 
-G = findgroups(T5370.Class);
+[G, bcNames] = findgroups(T5370.Class);
+assert(isequal(bcNames, allNames(allNames ~= "DB6")));
 perParasolSynapses(2,idx) = splitapply(@sum, T5370.Count, G);
 perParasolNeurons(2,idx) = splitapply(@numel, T5370.Count, G);
 
-G = findgroups(T5063.Class);
+[G, bcNames] = findgroups(T5063.Class);
+assert(isequal(bcNames, allNames(allNames ~= "DB6")));
 perParasolSynapses(3,idx) = splitapply(@sum, T5063.Count, G);
 perParasolNeurons(3,idx) = splitapply(@numel, T5063.Count, G);
 

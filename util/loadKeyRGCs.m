@@ -1,3 +1,8 @@
+% LOADKEYRGCS
+%
+% Loads final versions of the parasol and smooth RGCs. These are the RGCs of
+% record as the annotation database itself is live and subject to changing
+% in the future.
 
 load('c1321');
 load('c7889')

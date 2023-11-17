@@ -1,9 +1,9 @@
 %% Figure 2
-% - Last updated figure: 13Sep2023
+% - Last updated figure: 17Nov2023
 % --
 
 savePlots = true;
-saveDir = 'C:\Users\spatterson\Dropbox\Sara and Jay Shared\smooth monostratified ganglion cells';
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig2_Synapses");
 
 run('loadKeyRGCs.m');
 
@@ -23,14 +23,14 @@ set([h1, h2], 'MarkerFaceAlpha', markerAlpha, 'SizeData', 36);
 ax = c1321.render('FaceColor', smoothColor, 'FaceAlpha', 0.8, 'ax', ax);
 lightangle(90, 30); lightangle(225, 30);
 view(0, 90); toggleAxes();
-sb = plot3([215 235], [1 1], [50 50], 'k', 'LineWidth', 1.5);
+plot3([215 235], [1 1], [50 50], 'k', 'LineWidth', 1.5);
 figPos(gcf, 1.5, 1.5)
 tightfig(gcf);
 if savePlots
     print(gcf, fullfile(saveDir, 'Fig2A.png'), '-dpng', '-r600');
 end
 
-%% Fig 2B, 2C & 2D - Parasol RGCs ----------------------------------------
+%% Fig 2B - Parasol 5370 --------------------------------------------------
 ax = axes('Parent', figure()); hold(ax, 'on');
 h2 = mark3D(c5370.getSynapseXYZ('ConvPost'),...
     'ax', ax, 'Color', convColor, 'Scatter', true);
@@ -45,7 +45,7 @@ if savePlots
     exportgraphics(gca, fullfile(saveDir, 'Fig2B.png'), 'Resolution', 600);
 end
 
-
+%% Fig 2C - Parasol 18269 -------------------------------------------------
 ax = axes('Parent', figure()); hold(ax, 'on');
 h2 = mark3D(c18269.getSynapseXYZ('ConvPost'),...
     'ax', ax, 'Color', convColor, 'Scatter', true);
@@ -62,6 +62,7 @@ if savePlots
     exportgraphics(gca, fullfile(saveDir, 'Fig2C.png'), 'Resolution', 600);
 end
 
+%% Fig 2D - Parasol 5063 --------------------------------------------------
 ax = axes('Parent', figure()); hold(ax, 'on');
 h2 = mark3D(c5063.getSynapseXYZ('ConvPost'),...
     'ax', ax, 'Color', convColor, 'Scatter', true);

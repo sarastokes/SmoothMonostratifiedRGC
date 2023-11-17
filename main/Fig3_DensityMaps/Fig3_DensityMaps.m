@@ -1,9 +1,9 @@
 %% Figure 3
-% - Last Updated Figures: 17Sept2023
+% - Last Updated Figures: 17Nov2023
 % --
 
-saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig3_InhExcDensity", "subplots");
-savePlots = false;
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig3_DensityMaps");
+savePlots = true;
 run('loadKeyRGCs.m')
 
 figNames = ["AmacrineDensity", "BipolarDensity", "DendriteDensity"];

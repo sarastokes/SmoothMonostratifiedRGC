@@ -1,6 +1,6 @@
 
 savePlots = true;
-saveDir = fullfile(getSmoothMonoRepoDir(), "main", "ParasolBipolarCells");
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig6_ParasolBipolarCells");
 
 run('loadKeyRGCs.m');
 

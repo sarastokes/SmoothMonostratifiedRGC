@@ -1,7 +1,7 @@
 
 %% Settings
-saveDir = fullfile(getSmoothMonoRepoDir(), "main", "MixOfGaussianModel");
-savePlots = true;
+saveDir = fullfile(getSmoothMonoRepoDir(), "main", "Fig8_HotspotBipolars");
+savePlots = false;
 
 run('loadKeyRGCs.m');
 
@@ -157,9 +157,11 @@ for i = 1:GMM.numComponents
     figure();
     labels = arrayfun(@(a,b) sprintf("%u (%.1f%%)", a, b),...
         classTable{i,:}, pctTable{i,:});
-    p = pie(classTable{i,:}, labels);
+    pie(classTable{i,:}, labels);
     colormap([db5Color; db4Color; giantColor]);
     title(sprintf("Component %u (N = %u)", i, sum(classTable{i,:})));
-    savefig(gcf, fullfile(saveDir, sprintf("GMM_Comp%u.fig",i)));
+    if savePlots
+        savefig(gcf, fullfile(saveDir, sprintf("GMM_Comp%u.fig",i)));
+    end
 end
 clear labels p i
